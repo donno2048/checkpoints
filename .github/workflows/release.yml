@@ -1,0 +1,15 @@
+name: Release
+on: workflow_dispatch
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: wei/wget@v1
+      with:
+        args: -O data.zip https://github.com/dreamnettech/dreampower-checkpoints/releases/download/0.0.1/v0.0.1.zip
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "v1.0.0"
+        title: "First Release"
+        files: "data.zip"
